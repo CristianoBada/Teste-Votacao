@@ -20,10 +20,9 @@
 			<div class="container collapse navbar-collapse"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="/">Inicio<span
-							class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/cadastroEleicao">Eleicao</a></li>
+					<li class="nav-item "><a class="nav-link" href="/">Inicio</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="/cadastroEleicao">Eleicao <span class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="/cadastroCargo">Cargo</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/cadastroCandidato">Candidato</a></li>
@@ -38,7 +37,40 @@
 	<br />
 
 	<div class="container  border border-secondary">
-		<h1>Teste de Eleicao utilizando Java</h1>
+		<br />
+		<th:block th:include="mensagemValidacao"></th:block>
+		<form th:object="${eleicao}" th:action="@{/cadastroEleicao/novo}"
+			method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div class="row">
+				<div class="input-field col s3">
+					<div class="input-field col s3">
+						<label for="valor">Nome da Eleiao:</label> <input type="text"
+							step="any" th:field="*{nome}" required />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<div class="input-field col s2">
+						<label for="data_u">Data de inicio:</label> <input type="date"
+							value="" th:field="*{inicio}" placeholder="" required />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<div class="input-field col s2">
+						<label for="data_u">Data de termino:</label> <input type="date"
+							value="" th:field="*{fim}" placeholder="" required />
+					</div>
+				</div>
+			</div>
+
+			<button class="btn btn-dark" type="submit">Salvar</button>
+
+		</form>
+		<br />
 	</div>
 
 
