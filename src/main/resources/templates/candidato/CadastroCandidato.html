@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<title>Teste Eleicao - Cadastro de Candidato</title>
+</head>
+<body>
+	<header>
+		<!-- Inicio do menu -->
+		<nav
+			class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class=" navbar-brand" href="#">Teste Eleicao</a>
+
+			<div class="container collapse navbar-collapse"
+				id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item "><a class="nav-link" href="/">Inicio</a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/cadastroEleicao">Eleicao </span></a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/cadastroCargo">Cargo </a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="/cadastroCandidato">Candidato</a></li>
+					<li class="nav-item"><a class="nav-link" href="/areaDoEleitor">Area
+							do Eleitor</a></li>
+					<li class="nav-item"><a class="nav-link" href="/relatorios">Relatorios</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- Fim do menu -->
+	</header>
+	<br />
+
+	<div class="container  border border-secondary">
+		<br />
+		<th:block th:include="mensagemValidacao"></th:block>
+		<form th:object="${candidato}" enctype="multipart/form-data"
+			th:action="@{/cadastroCandidato/novo}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div class="row"></div>
+			<div class="row">
+				<div class="input-field col s3">
+					<img style="width: 150px; height: 150px">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<label for="valor">Nome do Candidato:</label> <input type="text"
+						step="any" th:field="*{nome}" required />
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<label for="nome">Cargo:</label> <select th:field="*{cargo}"
+						required>
+						<option th:each="item : ${listaCargo}" th:value="${item.id}"
+							th:text="${item.nome}" />
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s3">
+					<label for="nome">Imagem:</label> <input type="file"
+						name="imageFile" id="imageFile" onchange="previewImagem()" />
+				</div>
+			</div>
+
+			<button class="btn btn-dark" type="submit">Salvar</button>
+
+		</form>
+
+		<br />
+	</div>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script>
+		function previewImagem() {
+			var imagem = document.querySelector('input[name=imageFile]').files[0];
+			var preview = document.querySelector('img');
+
+			var reader = new FileReader();
+
+			reader.onloadend = function() {
+				preview.src = reader.result;
+			}
+
+			if (imagem) {
+				reader.readAsDataURL(imagem);
+			} else {
+				readview.src = "";
+			}
+		}
+	</script>
+
+</body>
+</html>

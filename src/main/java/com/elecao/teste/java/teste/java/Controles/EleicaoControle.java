@@ -21,8 +21,7 @@ public class EleicaoControle {
 	
 	@RequestMapping("/cadastroEleicao")
 	public String cadastrarEleicao(Model model) {
-		Eleicao eleicao = new Eleicao();
-		model.addAttribute("eleicao", eleicao);
+		model.addAttribute("eleicao", new Eleicao());
 		return "eleicao/CadastroEleicao";
 	}
 	

@@ -1,7 +1,5 @@
 package com.elecao.teste.java.teste.java.Controles;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.elecao.teste.java.teste.java.Entidades.Cargo;
-import com.elecao.teste.java.teste.java.Entidades.Eleicao;
 import com.elecao.teste.java.teste.java.Repository.CargoRepository;
 import com.elecao.teste.java.teste.java.Repository.EleicaoRepository;
-import com.elecao.teste.java.teste.java.Util.Convercoes;
 
 @Controller
 public class CargoControle {
@@ -29,10 +25,8 @@ public class CargoControle {
 	
 	@RequestMapping("/cadastroCargo")
 	public String CadastrarCargo(Model model) {
-		Cargo cargo = new Cargo();
-		model.addAttribute("cargo", cargo);
-		List<Eleicao> eleicoes = eleicaoDAO.findAll();
-		model.addAttribute("listaEleicao", eleicoes);
+		model.addAttribute("cargo",  new Cargo());
+		model.addAttribute("listaEleicao", eleicaoDAO.findAll());
 		return "cargo/CadastroCargo";
 	}
 	
