@@ -36,6 +36,13 @@ public class Convercoes {
 
 		return dataBR;
 	}
+	
+	public String dataAtualUS() {
+		Date data = new Date(System.currentTimeMillis()); 
+		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd"); 
+		String dateUS = formatarDate.format(data);
+		return dateUS;
+	}
 
 	public boolean comparaDatas(String data1, String data2) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
