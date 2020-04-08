@@ -8,7 +8,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<title>Teste Eleicao - Cadastro de Eleicao</title>
+<title>Teste Eleicao - cadastro de Cargo</title>
 </head>
 <body>
 	<header>
@@ -21,9 +21,10 @@
 				id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item "><a class="nav-link" href="/">Inicio</a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/cadastroEleicao">Eleicao </span></a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="/cadastroEleicao">Eleicao <span class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="/cadastroCargo">Cargo</a></li>
+						href="/cadastroCargo">Cargo <span class="sr-only">(current)</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/cadastroCandidato">Candidato</a></li>
 					<li class="nav-item"><a class="nav-link" href="/areaDoEleitor">Area
@@ -39,28 +40,23 @@
 	<div class="container  border border-secondary">
 		<br />
 		<th:block th:include="mensagemValidacao"></th:block>
-		<form th:object="${eleicao}" th:action="@{/cadastroEleicao/novo}"
+		<form th:object="${cargo}" th:action="@{/cadastroCargo/novo}"
 			method="post">
 			<input type="hidden" th:field="*{id}" />
 			<div class="row">
 				<div class="input-field col s3">
-					<label for="valor">Nome da Eleiao:</label> <input type="text"
+					<label for="valor">Nome do Cargo:</label> <input type="text"
 						step="any" th:field="*{nome}" required />
 
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<label for="data_u">Data de inicio:</label> <input type="date"
-						value="" th:field="*{inicio}" placeholder="" required />
-
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s3">
-					<label for="data_u">Data de termino:</label> <input type="date"
-						value="" th:field="*{fim}" placeholder="" required />
-
+					<label for="nome">Eleicao:</label> <select th:field="*{eleicao}"
+						required>
+						<option th:each="item : ${listaEleicao}" th:value="${item.id}"
+							th:text="${item.nome}" />
+					</select>
 				</div>
 			</div>
 
