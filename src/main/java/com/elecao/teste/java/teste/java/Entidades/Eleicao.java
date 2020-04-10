@@ -29,6 +29,17 @@ public class Eleicao extends AbstractEntity {
 	@OneToMany
 	private Set<Cargo> cargos;
 
+	@OneToMany
+	private Set<Eleitor> eleitores;
+
+	public Set<Eleitor> getEleitores() {
+		return eleitores;
+	}
+
+	public void setEleitores(Set<Eleitor> eleitores) {
+		this.eleitores = eleitores;
+	}
+
 	public Set<Cargo> getCargos() {
 		return cargos;
 	}
@@ -42,7 +53,6 @@ public class Eleicao extends AbstractEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	// Getters e Setters
 	public String getNome() {
 		return nome;
 	}
