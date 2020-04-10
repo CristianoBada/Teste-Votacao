@@ -28,6 +28,11 @@ public class Eleitor extends AbstractEntity {
 	@JoinColumn(name = "eleicao_id")
 	private Eleicao eleicao;
 
+	public Eleitor() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNome() {
 		return nome;
 	}
