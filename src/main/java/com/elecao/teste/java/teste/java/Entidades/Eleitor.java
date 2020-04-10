@@ -18,7 +18,7 @@ public class Eleitor extends AbstractEntity {
 
 	@NotEmpty
 	@Length(min = 14, max = 14)
-	private String cdf;
+	private String cpf;
 
 	@Length(min = 19, max = 19)
 	private String protocolo;
@@ -36,12 +36,12 @@ public class Eleitor extends AbstractEntity {
 		this.nome = nome;
 	}
 
-	public String getCdf() {
-		return cdf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCdf(String cdf) {
-		this.cdf = cdf;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getProtocolo() {
