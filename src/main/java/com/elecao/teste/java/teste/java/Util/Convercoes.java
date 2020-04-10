@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Convercoes {
 
-	public String convertDateUStoDataBR(String dataUS) {
+	public static String convertDateUStoDataBR(String dataUS) {
 		try {
 			DateFormat formatUS = new SimpleDateFormat("yyyy-mm-dd");
 			Date date = formatUS.parse(dataUS);
@@ -22,7 +22,7 @@ public class Convercoes {
 		return dataUS;
 	}
 
-	public String convertDateBRtoDataUS(String dataBR) {
+	public static String convertDateBRtoDataUS(String dataBR) {
 		try {
 			DateFormat formatUS = new SimpleDateFormat("dd/mm/yyyy");
 			Date date = formatUS.parse(dataBR);
@@ -37,14 +37,14 @@ public class Convercoes {
 		return dataBR;
 	}
 	
-	public String dataAtualUS() {
+	public static String dataAtualUS() {
 		Date data = new Date(System.currentTimeMillis()); 
 		SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd"); 
 		String dateUS = formatarDate.format(data);
 		return dateUS;
 	}
 
-	public boolean comparaDatas(String data1, String data2) {
+	public static boolean comparaDatas(String data1, String data2) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date date3 = sdf.parse(data1);

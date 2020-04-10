@@ -31,11 +31,11 @@ public class EleicaoControle {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 		} else {
-			if (new Convercoes().comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
+			if (Convercoes.comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
 				attributes.addFlashAttribute("mensagem", "A data de inicio tem que de anterior a data de termino da eleição");
 			} else {
-				eleicao.setFim(new Convercoes().convertDateBRtoDataUS(eleicao.getFim()));
-				eleicao.setInicio(new Convercoes().convertDateBRtoDataUS(eleicao.getInicio()));
+				eleicao.setFim(Convercoes.convertDateBRtoDataUS(eleicao.getFim()));
+				eleicao.setInicio(Convercoes.convertDateBRtoDataUS(eleicao.getInicio()));
 				eleicao.setId(null);
 				eleicaoDAO.save(eleicao);
 				attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");
@@ -44,5 +44,4 @@ public class EleicaoControle {
 
 		return "redirect:/cadastroEleicao";
 	}
-
 }

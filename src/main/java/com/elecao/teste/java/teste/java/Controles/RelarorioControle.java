@@ -38,9 +38,7 @@ public class RelarorioControle {
 
 	@GetMapping(value = "/relatorioFinal")
 	public ModelAndView relatorioElecoesFinalizadas(RedirectAttributes attributes) {
-		String dataS = new Convercoes().dataAtualUS();
-
-		List<Eleicao> eleicoes = eleicaoDAO.findByFimLessThanEqual(dataS);
+		List<Eleicao> eleicoes = eleicaoDAO.findByFimLessThanEqual(Convercoes.dataAtualUS());
 		if (eleicoes != null) {
 
 			List<Cargo> cargos = cargoDAO.findAll();
@@ -65,7 +63,7 @@ public class RelarorioControle {
 
 	@GetMapping(value = "/relatorioParcial")
 	public ModelAndView relatorioElecoesEmAndamento(RedirectAttributes attributes) {
-		String dataS = new Convercoes().dataAtualUS();
+		String dataS = Convercoes.dataAtualUS();
 
 		List<Eleicao> eleicoes = eleicaoDAO.findByFimGreaterThanEqualAndInicioLessThanEqual(dataS, dataS);
 		if (eleicoes != null) {

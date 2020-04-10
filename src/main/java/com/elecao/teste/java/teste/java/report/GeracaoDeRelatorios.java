@@ -44,7 +44,6 @@ public class GeracaoDeRelatorios extends AbstractPdfView {
 			Convercoes convercoes = new Convercoes();
 
 			for (Eleicao e : eleicoes) {
-				System.out.println(cargos.size());
 				document.add(new Paragraph(
 						e.getNome() + "   Data de incio: " + convercoes.convertDateUStoDataBR(e.getInicio())
 								+ "    Data de termino:" + convercoes.convertDateUStoDataBR(e.getFim())));
