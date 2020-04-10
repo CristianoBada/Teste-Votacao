@@ -1,6 +1,9 @@
 package com.elecao.teste.java.teste.java.Entidades;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -22,6 +25,17 @@ public class Eleicao extends AbstractEntity {
 	@NotEmpty
 	@Size(min = 10, max = 10)
 	private String fim;
+
+	@OneToMany
+	private Set<Cargo> cargos;
+
+	public Set<Cargo> getCargos() {
+		return cargos;
+	}
+
+	public void setCargos(Set<Cargo> cargos) {
+		this.cargos = cargos;
+	}
 
 	public Eleicao() {
 		super();

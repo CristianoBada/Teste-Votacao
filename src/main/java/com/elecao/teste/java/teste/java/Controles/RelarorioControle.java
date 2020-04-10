@@ -41,20 +41,25 @@ public class RelarorioControle {
 		String dataS = new Convercoes().dataAtualUS();
 
 		List<Eleicao> eleicoes = eleicaoDAO.findByFimLessThanEqual(dataS);
+		if (eleicoes != null) {
 
-		List<Cargo> cargos = cargoDAO.findAll();
-		List<Candidato> candidatos = (List<Candidato>) candidatoDAO.findAll();
+			List<Cargo> cargos = cargoDAO.findAll();
+			List<Candidato> candidatos = (List<Candidato>) candidatoDAO.findAll();
 
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("listaEleicao", eleicoes);
-		model.put("listaCargo", cargos);
-		model.put("listaCandidato", candidatos);
-		String titulo = "Eleições em andamento";
-		model.put("titulo", titulo);
-		String nomeArquivo = "relatorioParcial";
-		model.put("nomeArquivo", nomeArquivo);
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("listaEleicao", eleicoes);
+			model.put("listaCargo", cargos);
+			model.put("listaCandidato", candidatos);
+			String titulo = "Eleições Finalizadas";
+			model.put("titulo", titulo);
+			String nomeArquivo = "relatorioFinal";
+			model.put("nomeArquivo", nomeArquivo);
 
-		return new ModelAndView(new GeracaoDeRelatorios(), "listaEleicao", model);
+			return new ModelAndView(new GeracaoDeRelatorios(), model);
+		} else {
+			attributes.addFlashAttribute("mensagem", "Não existe dados de eleições!");
+			return new ModelAndView();
+		}
 
 	}
 

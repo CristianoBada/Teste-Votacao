@@ -18,27 +18,31 @@ import com.elecao.teste.java.teste.java.Util.Convercoes;
 public class EleicaoControle {
 	@Autowired
 	private EleicaoRepository eleicaoDAO;
-	
+
 	@RequestMapping("/cadastroEleicao")
 	public String cadastrarEleicao(Model model) {
 		model.addAttribute("eleicao", new Eleicao());
 		return "eleicao/CadastroEleicao";
 	}
-	
+
 	@PostMapping(value = "/cadastroEleicao/novo")
 	public String novaEleicao(@Valid Eleicao eleicao, BindingResult result, RedirectAttributes attributes) {
-		
+
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 		} else {
-			eleicao.setFim(new Convercoes().convertDateBRtoDataUS(eleicao.getFim()));
-			eleicao.setInicio(new Convercoes().convertDateBRtoDataUS(eleicao.getInicio()));
-			eleicao.setId(null);
-			eleicaoDAO.save(eleicao);
-			attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");
+			if (new Convercoes().comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
+				attributes.addFlashAttribute("mensagem", "A data de inicio tem que de anterior a data de termino da eleição");
+			} else {
+				eleicao.setFim(new Convercoes().convertDateBRtoDataUS(eleicao.getFim()));
+				eleicao.setInicio(new Convercoes().convertDateBRtoDataUS(eleicao.getInicio()));
+				eleicao.setId(null);
+				eleicaoDAO.save(eleicao);
+				attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");
+			}
 		}
-		
+
 		return "redirect:/cadastroEleicao";
 	}
-	
+
 }
