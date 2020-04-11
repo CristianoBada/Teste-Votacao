@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.elecao.teste.java.teste.java.Entidades.Eleicao;
 import com.elecao.teste.java.teste.java.Repository.EleicaoRepository;
-import com.elecao.teste.java.teste.java.Util.Convercoes;
+import com.elecao.teste.java.teste.java.Util.ConvercoesDeDatas;
 
 @Controller
 public class EleicaoControle {
@@ -31,11 +31,11 @@ public class EleicaoControle {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
 		} else {
-			if (Convercoes.comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
+			if (ConvercoesDeDatas.comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
 				attributes.addFlashAttribute("mensagem", "A data de inicio tem que de anterior a data de termino da eleição");
 			} else {
-				eleicao.setFim(Convercoes.convertDateBRtoDataUS(eleicao.getFim()));
-				eleicao.setInicio(Convercoes.convertDateBRtoDataUS(eleicao.getInicio()));
+				eleicao.setFim(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getFim()));
+				eleicao.setInicio(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getInicio()));
 				eleicao.setId(null);
 				eleicaoDAO.save(eleicao);
 				attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");

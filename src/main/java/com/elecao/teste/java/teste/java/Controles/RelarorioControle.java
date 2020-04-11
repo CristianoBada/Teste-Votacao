@@ -17,7 +17,7 @@ import com.elecao.teste.java.teste.java.Entidades.Eleicao;
 import com.elecao.teste.java.teste.java.Repository.CandidatoRepository;
 import com.elecao.teste.java.teste.java.Repository.CargoRepository;
 import com.elecao.teste.java.teste.java.Repository.EleicaoRepository;
-import com.elecao.teste.java.teste.java.Util.Convercoes;
+import com.elecao.teste.java.teste.java.Util.ConvercoesDeDatas;
 import com.elecao.teste.java.teste.java.report.GeracaoDeRelatorios;
 
 @Controller
@@ -38,7 +38,7 @@ public class RelarorioControle {
 
 	@GetMapping(value = "/relatorioFinal")
 	public ModelAndView relatorioElecoesFinalizadas(RedirectAttributes attributes) {
-		List<Eleicao> eleicoes = eleicaoDAO.findByFimLessThanEqual(Convercoes.dataAtualUS());
+		List<Eleicao> eleicoes = eleicaoDAO.findByFimLessThanEqual(ConvercoesDeDatas.dataAtualUS());
 		if (eleicoes != null) {
 
 			List<Cargo> cargos = cargoDAO.findAll();
@@ -63,7 +63,7 @@ public class RelarorioControle {
 
 	@GetMapping(value = "/relatorioParcial")
 	public ModelAndView relatorioElecoesEmAndamento(RedirectAttributes attributes) {
-		String dataS = Convercoes.dataAtualUS();
+		String dataS = ConvercoesDeDatas.dataAtualUS();
 
 		List<Eleicao> eleicoes = eleicaoDAO.findByFimGreaterThanEqualAndInicioLessThanEqual(dataS, dataS);
 		if (eleicoes != null) {

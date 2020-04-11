@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.document.AbstractPdfView;
 import com.elecao.teste.java.teste.java.Entidades.Candidato;
 import com.elecao.teste.java.teste.java.Entidades.Cargo;
 import com.elecao.teste.java.teste.java.Entidades.Eleicao;
-import com.elecao.teste.java.teste.java.Util.Convercoes;
+import com.elecao.teste.java.teste.java.Util.ConvercoesDeDatas;
 import com.lowagie.text.Document;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
@@ -41,7 +41,7 @@ public class GeracaoDeRelatorios extends AbstractPdfView {
 			@SuppressWarnings("unchecked")
 			List<Candidato> candidatos = (List<Candidato>) model.get("listaCandidato");
 
-			Convercoes convercoes = new Convercoes();
+			ConvercoesDeDatas convercoes = new ConvercoesDeDatas();
 
 			for (Eleicao e : eleicoes) {
 				document.add(new Paragraph(

@@ -21,7 +21,7 @@ import com.elecao.teste.java.teste.java.Repository.CandidatoRepository;
 import com.elecao.teste.java.teste.java.Repository.CargoRepository;
 import com.elecao.teste.java.teste.java.Repository.EleicaoRepository;
 import com.elecao.teste.java.teste.java.Repository.EleitorRepository;
-import com.elecao.teste.java.teste.java.Util.Convercoes;
+import com.elecao.teste.java.teste.java.Util.ConvercoesDeDatas;
 import com.elecao.teste.java.teste.java.Util.Protocolo;
 
 @Controller
@@ -33,13 +33,13 @@ public class EleitorControle {
 	private int quantidade_cargos;
 
 	private List<Cargo> cargos;
-	
+
 	private String nomeCargo;
 
 	List<Candidato> candidatos;
 	List<Candidato> candidatosParaSalavar;
 	private boolean existe_candidatos;
-	
+
 	private Eleitor eleitor;
 
 	@Autowired
@@ -57,8 +57,8 @@ public class EleitorControle {
 		model.addAttribute("eleitor", eleitor);
 
 		// Lista com as elieções em andamento
-		List<Eleicao> list = eleicaoDAO.findByFimGreaterThanEqualAndInicioLessThanEqual(Convercoes.dataAtualUS(),
-				Convercoes.dataAtualUS());
+		List<Eleicao> list = eleicaoDAO.findByFimGreaterThanEqualAndInicioLessThanEqual(ConvercoesDeDatas.dataAtualUS(),
+				ConvercoesDeDatas.dataAtualUS());
 		model.addAttribute("listaEleicao", list);
 
 		pagina = 0;
@@ -71,23 +71,31 @@ public class EleitorControle {
 	@PostMapping(value = "/areaDoEleitor/proximo")
 	public String entraVoto(@Valid Eleitor eleitor, BindingResult result, RedirectAttributes attributes, Model model) {
 
-		id_eleicao = eleitor.getEleicao().getId();
-		cargos = cargoDAO.findByEleicao_id(id_eleicao);
-		this.eleitor = eleitor;
+		Eleitor eleitorCpf = eleitorDAO.findByCpfAndEleicao_id(eleitor.getCpf(), eleitor.getEleicao().getId());
+		if (eleitorCpf == null) {
+			id_eleicao = eleitor.getEleicao().getId();
+			cargos = cargoDAO.findByEleicao_id(id_eleicao);
+			this.eleitor = eleitor;
 
-		if (cargos.size() > 0) {
+			if (cargos.size() > 0) {
 
-			quantidade_cargos = cargos.size();
-			validaSeExisteCandidato();
+				quantidade_cargos = cargos.size();
+				validaSeExisteCandidato();
 
-			if (existe_candidatos) {
-				return "redirect:/areaDoEleitorProximo";
+				if (existe_candidatos) {
+					return "redirect:/areaDoEleitorProximo";
+				} else {
+					attributes.addFlashAttribute("mensagem", "Não existe candidatos para essa eleição!");
+					return "redirect:/areaDoEleitor";
+				}
 			} else {
-				attributes.addFlashAttribute("mensagem", "Não existe candidatos para essa eleição!");
+				attributes.addFlashAttribute("mensagem", "Não existe cargos para essa eleição!");
 				return "redirect:/areaDoEleitor";
 			}
+
 		} else {
-			attributes.addFlashAttribute("mensagem", "Não existe cargos para essa eleição!");
+			attributes.addFlashAttribute("mensagem", "O eleitor com CPF " + eleitorCpf.getCpf()
+					+ " não pode votar na eleição " + eleitorCpf.getEleicao().getNome());
 			return "redirect:/areaDoEleitor";
 		}
 	}
@@ -135,9 +143,9 @@ public class EleitorControle {
 			return "redirect:/areaDoEleitor";
 		}
 	}
-	
+
 	private void salvaCandidatos() {
-		for (Candidato c: candidatosParaSalavar) {
+		for (Candidato c : candidatosParaSalavar) {
 			c.setVotos(c.getVotos() + 1);
 			candidatoDAO.save(c);
 		}
