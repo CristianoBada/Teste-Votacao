@@ -18,7 +18,7 @@
 		<br />
 		<th:block  th:include="mensagemValidacao"></th:block>
 		<form th:action="@{/areaDoEleitorProximo/proximo}" method="post">
-			<h1 th:text="*{pagina}"></h1>
+			<h1 th:text="*{nomeCargo}"></h1>
 
 			<label for="nome">Candidatos:</label> <select name="candidato"
 				required>
