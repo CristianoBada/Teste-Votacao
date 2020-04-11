@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<title>Teste Eleicao - cadastro de Cargo</title>
+</head>
+<body>
+	<header> </header>
+	<br />
+
+	<div class="container  border border-secondary">
+		<br />
+		<th:block  th:include="mensagemValidacao"></th:block>
+		<form th:action="@{/areaDoEleitorProximo/proximo}" method="post">
+			<h1 th:text="*{pagina}"></h1>
+
+			<label for="nome">Candidatos:</label> <select name="candidato"
+				required>
+				<option th:each="item : ${listaCandidato}" th:value="${item.id}"
+					th:text="${item.nome}" />
+			</select>
+
+			<button class="btn btn-dark" type="submit">Proximo >></button>
+
+		</form>
+		<br />
+	</div>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>
