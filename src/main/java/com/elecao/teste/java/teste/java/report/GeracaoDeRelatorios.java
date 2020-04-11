@@ -41,12 +41,10 @@ public class GeracaoDeRelatorios extends AbstractPdfView {
 			@SuppressWarnings("unchecked")
 			List<Candidato> candidatos = (List<Candidato>) model.get("listaCandidato");
 
-			ConvercoesDeDatas convercoes = new ConvercoesDeDatas();
-
 			for (Eleicao e : eleicoes) {
 				document.add(new Paragraph(
-						e.getNome() + "   Data de incio: " + convercoes.convertDateUStoDataBR(e.getInicio())
-								+ "    Data de termino:" + convercoes.convertDateUStoDataBR(e.getFim())));
+						e.getNome() + "   Data de incio: " + ConvercoesDeDatas.convertDateUStoDataBR(e.getInicio())
+								+ "    Data de termino:" + ConvercoesDeDatas.convertDateUStoDataBR(e.getFim())));
 
 				for (Cargo c : cargos) {
 					if (c.getEleicao().getId() == e.getId()) {
@@ -54,7 +52,7 @@ public class GeracaoDeRelatorios extends AbstractPdfView {
 						document.add(new Paragraph("Candidatos:"));
 						for (Candidato ca : candidatos) {
 							if (ca.getCargo().getId() == c.getId()) {
-								document.add(new Paragraph(ca.getNome()));
+								document.add(new Paragraph(ca.getNome() + "    Votos: " + ca.getVotos()));
 							}
 						}
 					}
