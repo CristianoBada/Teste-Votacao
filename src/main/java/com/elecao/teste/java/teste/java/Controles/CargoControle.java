@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.elecao.teste.java.teste.java.Entidades.Cargo;
 import com.elecao.teste.java.teste.java.Repository.CargoRepository;
 import com.elecao.teste.java.teste.java.Repository.EleicaoRepository;
+import com.elecao.teste.java.teste.java.Util.ConvercoesDeDatas;
 
 @Controller
 public class CargoControle {
@@ -26,7 +27,7 @@ public class CargoControle {
 	@RequestMapping("/cadastroCargo")
 	public String CadastrarCargo(Model model) {
 		model.addAttribute("cargo",  new Cargo());
-		model.addAttribute("listaEleicao", eleicaoDAO.findAll());
+		model.addAttribute("listaEleicao", eleicaoDAO.findByInicioAfter(ConvercoesDeDatas.dataAtualUS()));
 		return "cargo/CadastroCargo";
 	}
 	
