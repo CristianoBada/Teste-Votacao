@@ -125,9 +125,7 @@ public class EleitorControle {
 	@PostMapping(value = "/areaDoEleitorProximo/proximo")
 	public String proximoVoto(@Valid Candidato candidato, BindingResult result, RedirectAttributes attributes) {
 		existe_candidatos = false;
-		if (candidato == null) {
-			System.out.println("candidato nulo");
-		}
+
 		candidatosParaSalavar.add(candidato);
 		validaSeExisteCandidato();
 		if (existe_candidatos) {
