@@ -5,10 +5,24 @@
 
 </head>
 <body>
-	<div class="alert alert-secondary" role="alert"
+	<div class="alert alert-success" role="alert"
 		th:if="${not #strings.isEmpty(mensagem)	}">
 
 		<span th:text="${mensagem}"></span>
+		
+	</div>
+	
+	<div class="alert alert-danger" role="alert"
+		th:if="${not #strings.isEmpty(mensagemError)	}">
+
+		<span th:text="${mensagemError}"></span>
+		
+	</div>
+	
+	<div class="alert alert-warning" role="alert"
+		th:if="${not #strings.isEmpty(mensagemAviso)	}">
+
+		<span th:text="${mensagemAviso}"></span>
 		
 	</div>
 </body>

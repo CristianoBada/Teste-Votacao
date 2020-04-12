@@ -29,10 +29,10 @@ public class EleicaoControle {
 	public String novaEleicao(@Valid Eleicao eleicao, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
-			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			attributes.addFlashAttribute("mensagemAviso", "Verifique os campos!");
 		} else {
 			if (ConvercoesDeDatas.comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
-				attributes.addFlashAttribute("mensagem", "A data de inicio tem que de anterior a data de termino da eleição");
+				attributes.addFlashAttribute("mensagemError", "A data de inicio tem que de anterior a data de termino da eleição");
 			} else {
 				eleicao.setFim(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getFim()));
 				eleicao.setInicio(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getInicio()));

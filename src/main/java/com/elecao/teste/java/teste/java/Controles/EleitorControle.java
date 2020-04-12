@@ -85,16 +85,16 @@ public class EleitorControle {
 				if (existe_candidatos) {
 					return "redirect:/areaDoEleitorProximo";
 				} else {
-					attributes.addFlashAttribute("mensagem", "Não existe candidatos para essa eleição!");
+					attributes.addFlashAttribute("mensagemAviso", "Não existe candidatos para essa eleição!");
 					return "redirect:/areaDoEleitor";
 				}
 			} else {
-				attributes.addFlashAttribute("mensagem", "Não existe cargos para essa eleição!");
+				attributes.addFlashAttribute("mensagemAviso", "Não existe cargos para essa eleição!");
 				return "redirect:/areaDoEleitor";
 			}
 
 		} else {
-			attributes.addFlashAttribute("mensagem", "O eleitor com CPF " + eleitorCpf.getCpf()
+			attributes.addFlashAttribute("mensagemError", "O eleitor com CPF " + eleitorCpf.getCpf()
 					+ " não pode votar na eleição " + eleitorCpf.getEleicao().getNome());
 			return "redirect:/areaDoEleitor";
 		}

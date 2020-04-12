@@ -38,7 +38,7 @@ public class CandidatoControle {
 	@PostMapping(value = "/cadastroCandidato/novo")
 	public String novaEleicao(@Valid Candidato candidato, @RequestParam("imageFile") MultipartFile imageFile, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			attributes.addFlashAttribute("mensagemAviso", "Verifique os campos!");
 		} else {
 			candidato.setId(null);
 			candidato.setVotos(0);

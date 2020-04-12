@@ -34,7 +34,7 @@ public class CargoControle {
 	public String novaEleicao(@Valid Cargo cargo, BindingResult result, RedirectAttributes attributes) {
 		
 		if (result.hasErrors()) {
-			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+			attributes.addFlashAttribute("mensagemAviso", "Verifique os campos!");
 		} else {
 			cargo.setId(null);
 			cargoDao.save(cargo);

@@ -82,7 +82,7 @@ public class RelarorioControle {
 
 			return new ModelAndView(new GeracaoDeRelatorios(), model);
 		} else {
-			attributes.addFlashAttribute("mensagem", "Não existe dados de eleições!");
+			attributes.addFlashAttribute("mensagemError", "Não existe dados de eleições!");
 			return new ModelAndView();
 		}
 	}
