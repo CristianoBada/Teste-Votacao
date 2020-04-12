@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
+@SequenceGenerator(name = "seq_eleicao", sequenceName = "seq_eleicao", initialValue = 1)
 public class Eleicao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
