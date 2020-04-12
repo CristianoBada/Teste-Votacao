@@ -17,7 +17,7 @@ public class Candidato extends AbstractEntity {
 	@NotEmpty
 	private String nome;
 
-	@Lob
+	
 	private byte[] imagem;
 
 	@NonNull
