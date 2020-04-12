@@ -40,46 +40,24 @@
 	<div class="container  border border-secondary">
 		<br />
 		<th:block th:include="mensagemValidacao"></th:block>
-		<form th:object="${candidato}" enctype="multipart/form-data"
-			th:action="@{/cadastroCandidato/novo}" method="post">
-			<input type="hidden" th:field="*{id}" />
-			<div class="row">
-				<div class="input-field col s3">
-					<h3 th:text="${nomeEleicao}"></h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s3">
-					<img style="width: 150px; height: 150px">
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s3">
-					<label for="valor">Nome do Candidato:</label> <input type="text"
-						step="any" th:field="*{nome}" required />
+		<form enctype="multipart/form-data"
+			th:action="@{/cadastroCandidatoEleicao/proximo}" method="post">
 
-				</div>
-			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<label for="nome">Cargo:</label> <select th:field="*{cargo}"
-						onchange="loadImage(value)" required>
-						<option th:each="item : ${listaCargo}" th:value="${item.id}"
+				<h5>Escolha uma Eleicao:</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s3">
+					<label for="nome">Eleicao:</label> <select name="eleicao" required>
+						<option th:each="item : ${listaEleicao}" th:value="${item.id}"
 							th:text="${item.nome}" />
 					</select>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="input-field col s3">
-					<label for="nome">Imagem:</label> <input type="file"
-						name="imageFile" id="imageFile" onchange="previewImagem()"
-						required />
-				</div>
-			</div>
-
-			<button class="btn btn-dark" type="submit">Salvar</button>
-			<a href="/cadastroCandidato" class="btn btn-dark"> Voltar</a>
+			<button class="btn btn-dark" type="submit">Proximo >></button>
 
 		</form>
 
