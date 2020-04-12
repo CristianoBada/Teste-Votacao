@@ -42,7 +42,12 @@ public class CandidatoControle {
 		} else {
 			candidato.setVotos(0);
 			try {
+				if (imageFile.getBytes().length > 0) {
 				candidato.setImagem(imageFile.getBytes());
+				} else {
+					attributes.addFlashAttribute("mensagemAviso", "Selecione uma imagem!");
+					return "redirect:/cadastroCandidato";
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
