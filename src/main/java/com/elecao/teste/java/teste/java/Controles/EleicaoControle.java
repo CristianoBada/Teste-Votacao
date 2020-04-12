@@ -36,7 +36,6 @@ public class EleicaoControle {
 			} else {
 				eleicao.setFim(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getFim()));
 				eleicao.setInicio(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getInicio()));
-				eleicao.setId(null);
 				eleicaoDAO.save(eleicao);
 				attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");
 			}

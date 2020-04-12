@@ -40,7 +40,6 @@ public class CandidatoControle {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagemAviso", "Verifique os campos!");
 		} else {
-			candidato.setId(null);
 			candidato.setVotos(0);
 			try {
 				candidato.setImagem(imageFile.getBytes());

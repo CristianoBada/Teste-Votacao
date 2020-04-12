@@ -134,14 +134,17 @@ public class EleitorControle {
 			return "redirect:/areaDoEleitorProximo";
 		} else {
 			salvaCandidatos();
-			eleitor.setId(null);
-			eleitor.setProtocolo(Protocolo.gerecaoDeCodigoAlfaNumerico());
-			Eleicao eleicao = eleicaoDAO.findById(id_eleicao).get();
-			eleitor.setEleicao(eleicao);
-			eleitorDAO.save(eleitor);
+			salvarEleitor();
 			attributes.addFlashAttribute("mensagem", "Votação concluida! Protocolo: " + eleitor.getProtocolo());
 			return "redirect:/areaDoEleitor";
 		}
+	}
+	
+	private void salvarEleitor( ) {
+		eleitor.setProtocolo(Protocolo.gerecaoDeCodigoAlfaNumerico());
+		Eleicao eleicao = eleicaoDAO.findById(id_eleicao).get();
+		eleitor.setEleicao(eleicao);
+		eleitorDAO.save(eleitor);
 	}
 
 	private void salvaCandidatos() {

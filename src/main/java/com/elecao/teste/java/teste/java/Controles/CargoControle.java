@@ -36,7 +36,6 @@ public class CargoControle {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagemAviso", "Verifique os campos!");
 		} else {
-			cargo.setId(null);
 			cargoDao.save(cargo);
 			attributes.addFlashAttribute("mensagem", "Cargo salvo com sucesso!");
 		}
