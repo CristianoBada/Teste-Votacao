@@ -31,13 +31,19 @@ public class EleicaoControle {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagemAviso", "Verifique os campos!");
 		} else {
-			if (ConvercoesDeDatas.comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
-				attributes.addFlashAttribute("mensagemError", "A data de inicio tem que de anterior a data de termino da eleição");
+			if (ConvercoesDeDatas.comparaDatas(ConvercoesDeDatas.dataAtualUS(), eleicao.getInicio())) {
+				attributes.addFlashAttribute("mensagemError",
+						"A data de inicio tem que ser depois da data atual!");
 			} else {
-				eleicao.setFim(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getFim()));
-				eleicao.setInicio(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getInicio()));
-				eleicaoDAO.save(eleicao);
-				attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");
+				if (ConvercoesDeDatas.comparaDatas(eleicao.getInicio(), eleicao.getFim())) {
+					attributes.addFlashAttribute("mensagemError",
+							"A data de inicio tem que de anterior a data de termino da eleição");
+				} else {
+					eleicao.setFim(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getFim()));
+					eleicao.setInicio(ConvercoesDeDatas.convertDateBRtoDataUS(eleicao.getInicio()));
+					eleicaoDAO.save(eleicao);
+					attributes.addFlashAttribute("mensagem", "Eleicao salva com sucesso!");
+				}
 			}
 		}
 
