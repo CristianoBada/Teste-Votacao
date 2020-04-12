@@ -17,7 +17,7 @@ public class Eleicao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_eleicao")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_eleicao")
 	private Long id;
 
 	// Nome da eleição
