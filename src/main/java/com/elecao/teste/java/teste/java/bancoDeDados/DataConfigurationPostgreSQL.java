@@ -10,18 +10,17 @@ import org.springframework.context.annotation.Profile;
 
 //Essa classe pe para rodar o banco de dados no Heroku
 
-@Configuration
-@Profile("prod")
+/*@Configuration
+@Profile("prod")*/
 public class DataConfigurationPostgreSQL {
 
-	@Bean
+	/*@Bean
 	public BasicDataSource dataSource() throws URISyntaxException {
 		URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-		String username = dbUri.getUserInfo().split(":")[0];
-		String password = dbUri.getUserInfo().split(":")[1];
-		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath()
-				+ "?sslmode=require";
+		String username = "rbflakaulzxabp";
+		String password = "0c8775db683e0f0eceaab671afd43bbed0f08abafbce48b5ed42681c207989a3";
+		String dbUrl = "jdbc:postgresql://ec2-18-210-214-86.compute-1.amazonaws.com:5432/d10f4s3djl7nb6?sslmode=require";
 
 		BasicDataSource basicDataSource = new BasicDataSource();
 		basicDataSource.setUrl(dbUrl);
@@ -29,5 +28,5 @@ public class DataConfigurationPostgreSQL {
 		basicDataSource.setPassword(password);
 
 		return basicDataSource;
-	}
+	}*/
 }

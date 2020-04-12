@@ -2,7 +2,6 @@ package com.elecao.teste.java.teste.java.Entidades;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -17,7 +16,6 @@ public class Candidato extends AbstractEntity {
 	@NotEmpty
 	private String nome;
 
-	
 	private byte[] imagem;
 
 	@NonNull

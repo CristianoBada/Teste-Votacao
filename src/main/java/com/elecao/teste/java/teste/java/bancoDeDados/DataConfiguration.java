@@ -12,10 +12,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 //Essa classe é para rodar o banco de dados em ambiente de desenvolvimento
 
-@Configuration
-@Profile("dev")
+//@Configuration
+//@Profile("dev")
 public class DataConfiguration {
-	@Bean
+	/*@Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
@@ -34,5 +34,5 @@ public class DataConfiguration {
 		adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
 		adapter.setPrepareConnection(true);
 		return adapter;
-	}
+	}*/
 }
