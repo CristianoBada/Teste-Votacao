@@ -8,18 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@SequenceGenerator(name = "seq_eleicao", sequenceName = "seq_eleicao", initialValue = 1)
 public class Eleicao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_eleicao")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_eleicao")
 	private Long id;
 
 	// Nome da eleição
@@ -38,14 +36,6 @@ public class Eleicao implements Serializable {
 
 	@OneToMany
 	private Set<Cargo> cargos;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	@OneToMany
 	private Set<Eleitor> eleitores;
@@ -93,6 +83,14 @@ public class Eleicao implements Serializable {
 
 	public void setFim(String fim) {
 		this.fim = fim;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@Override
